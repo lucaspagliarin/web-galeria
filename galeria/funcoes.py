@@ -9,9 +9,9 @@ def salva_imagens(filtros):
     project_path = settings.BASE_DIR
     project_path = project_path.parent.as_posix()
     path = '/webgaleria/galeria/arquivos/imagens/'
-    nome_arquivo = imagens.name
-    caminho_completo = Path(project_path + path + nome_arquivo)
-
-    img = Image.open(imagens.file)
-    img = img.save(caminho_completo)
+    for imagem in imagens:
+        nome_arquivo = imagem.name
+        caminho_completo = Path(project_path + path + nome_arquivo)
+        img = Image.open(imagem.file)
+        img = img.save(caminho_completo)
 

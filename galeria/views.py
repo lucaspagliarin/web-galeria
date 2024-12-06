@@ -13,7 +13,7 @@ def Home(request):
     if form_adiciona.is_valid():
       filtros = {}
       filtros['tags'] = form_adiciona.cleaned_data['tags']
-      filtros['imagens'] = request.FILES.get('imagens')
+      filtros['imagens'] = request.FILES.getlist('imagens')
 
       resultado = salva_imagens(filtros)
 

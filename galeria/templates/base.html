@@ -202,7 +202,7 @@
       <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="row">
-          <input name="imagens" type="file" accept="image/*">
+          <input name="imagens" type="file" accept="image/*" multiple>
         </div>
         <div>
           {{ form_adiciona }}
