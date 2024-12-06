@@ -112,3 +112,40 @@ nav {
   }
 }
 
+dialog {
+   width: 30%;
+   justify-self: center;
+   align-self: center;
+   border: none;
+   border-radius: 15px;
+   padding: 20px;
+}
+
+
+.row {
+   display: flex;
+   flex-wrap: flex;
+   margin-left: -0.75rem;
+   margin-right: -0.75rem;
+}
+input {
+   font-size: 20px;
+   width: 300px;
+   margin-top: 20px;
+   padding: 1px;
+}
+
+
+input::placeholder {
+   font-size: 13px;
+   margin-left: 5px;
+}
+
+
+button#login {
+   border: none;
+   padding: 10px;
+   width: 100px;
+   border-radius: 30px;
+   background-color: #e7c197;
+}

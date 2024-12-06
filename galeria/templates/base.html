@@ -70,7 +70,9 @@
           </svg>
         </a>
 
-        <a class="add_button" href="">
+<!--        <button onclick="document.getElementById('modal-login').showModal();">testemodal</button>-->
+
+        <button class="add_button" onclick="document.getElementById('adiciona_imagens').showModal();">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -83,7 +85,7 @@
               fill="white"
             />
           </svg>
-        </a>
+        </button>
       </div>
     </nav>
     <div class="actions">
@@ -127,5 +129,96 @@
       "assets/photo.jpeg" %}" alt="" /> <img src="{% static "assets/photo.jpeg"
       %}" alt="" />
     </div>
+
+
+  <dialog id="modal-login">
+     <div class="modal-header">
+       <div class="row" style="justify-content: space-between; margin-left: 5px; margin-right: 5px;">
+         <h4>Login</h4>
+         <span style="cursor: pointer;" onclick="document.getElementById('modal-login').close();">X</span>
+       </div>
+     </div>
+     <div class="modal-body" style="justify-items: center;">
+       <form action="">
+         <div class="row">
+           <input id="email-login" name="email" type="email" placeholder="Usuário ou Email">
+         </div>
+         <div class="row">
+           <span style="font-size:13px; text-decoration: underline; cursor: pointer;" onmouseover="color: blue;"
+                 onclick="document.getElementById('modal-cadastro').showModal(); document.getElementById('modal-login').close();">
+             Não possuo cadastro. Cadastrar agora.</span>
+         </div>
+         <div class="row">
+           <input id="password-login" name="password" type="password" placeholder="Senha">
+         </div>
+         <div class="row" style="justify-content: center; padding-top: 20px;">
+           <button id="login" type="submit">Login</button>
+         </div>
+
+
+
+
+       </form>
+
+
+     </div>
+     <div class="modal-footer">
+     </div>
+   </dialog>
+
+
+  <dialog id="modal-cadastro">
+   <div class="modal-header">
+       <div class="row" style="justify-content: space-between; margin-left: 5px; margin-right: 5px;">
+         <h4>Cadastro</h4>
+         <span style="cursor: pointer;" onclick="document.getElementById('modal-cadastro').close();">X</span>
+       </div>
+   </div>
+   <div class="modal-body" style="justify-items: center;">
+       <form action="">
+         <div class="row">
+           <input id="nome-cadastro" name="nome" type="text" placeholder="Nome">
+         </div>
+         <div class="row">
+           <span style="font-size:13px; text-decoration: underline; cursor: pointer;" onmouseover="color: blue;"
+                 onclick="document.getElementById('modal-login').showModal(); document.getElementById('modal-cadastro').close();">
+             Já possuo cadastro</span>
+         </div>
+         <div class="row">
+           <input id="password" name="password" type="password" placeholder="Senha">
+         </div>
+         <div class="row" style="justify-content: center; padding-top: 20px;">
+           <button id="cadastrar" type="submit">Cadastrar</button>
+         </div>
+       </form>
+     </div>
+  </dialog>
+
+  <dialog id="adiciona_imagens">
+    <div class="modal-header">
+
+    </div>
+    <div class="modal-body">
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+          <input name="imagens" type="file" accept="image/*">
+        </div>
+        <div>
+          {{ form_adiciona }}
+        </div>
+
+        <div class="row">
+          <button type="submit">Adicionar</button>
+        </div>
+      </form>
+    </div>
+
+  </dialog>
+
+
+
+
+
   </body>
 </html>
