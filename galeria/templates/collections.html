@@ -22,8 +22,11 @@
     <section id="secao_colecoes" style="text-align: center; justify-items: center;">
         <h3 style="margin-bottom: 40px">Coleções</h3>
         <div id="colecoes">
+            <div class="colecao" style="margin-bottom: 25px; margin-right: 25px" onclick="busca_favoritos();">
+                <h3>Favoritos</h3>
+            </div>
             {% for col in colecoes %}
-                <div class="colecao" style="margin-bottom: 25px;" onclick="busca_colecao('{{ col }}');">
+                <div class="colecao" style="margin-bottom: 25px; margin-right: 25px" onclick="busca_colecao('{{ col }}');">
                     <h3>{{ col }}</h3>
                 </div>
             {% endfor %}
@@ -36,7 +39,6 @@
 
         <script>
             function busca_colecao(colecao) {
-                debugger;
                 $.ajax({
                     url: '/colecoes/',
                       method: 'GET',
@@ -45,13 +47,11 @@
                       },
                       success: function(response) {
                         response = JSON.parse(response)
-                        debugger;
                         document.getElementById('modais').innerHTML = response.modal;
                         document.getElementById('modal-colecao').showModal();
                         console.log('Dados enviados com sucesso:', response);
                       },
                       error: function(error) {
-                        debugger;
                         console.error('Erro ao enviar dados:', error);
                       }
                     });

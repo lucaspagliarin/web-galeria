@@ -3,7 +3,6 @@
 {% block conteudo %}
     <script>
         function mostra_form(collection) {
-            debugger;
             form = document.getElementById('form_adiciona');
             if (collection == 'new'){
                 document.getElementById('new').classList.remove('esconde');
@@ -16,7 +15,7 @@
                     document.getElementById('new').classList.add('esconde');
                 }
             }
-            form.classList.remove('esconde')
+            form.classList.remove('esconde');
         }
 
     </script>
@@ -24,7 +23,7 @@
 
     <section id="adiciona">
         <div class="row" style="width: 100%; margin-left: 75px;">
-            <a href="/"><span>Voltar</span></a>
+            <a href="/"><i style="font-size: x-large; color: #000;" class="bi bi-arrow-left"></i></a>
         </div>
         <div>
             <h3>Adicione novas fotos</h3>
