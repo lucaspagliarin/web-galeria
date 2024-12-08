@@ -2,7 +2,7 @@ import os.path
 
 from django.conf import settings
 from pathlib import Path
-from PIL import Image
+# from PIL import Image
 from django.contrib.auth.models import User
 from _datetime import datetime
 
@@ -15,8 +15,8 @@ def salva_imagens(dados):
         for imagem in imagens:
             nome_arquivo = imagem.name
             caminho_completo = Path(project_path + path + nome_arquivo)
-            img = Image.open(imagem.file)
-            img = img.save(caminho_completo)
+            # img = Image.open(imagem.file)
+            # img = img.save(caminho_completo)
 
         return True
     except:
