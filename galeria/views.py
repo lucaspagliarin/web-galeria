@@ -40,6 +40,11 @@ def Adiciona(request):
       }
 
       resultado = salva_imagens(dados)
+      if resultado:
+        dic['retorno'] = {'sucesso': True, 'mensagem': "Imagens cadastradas com sucesso!"}
+        return render(request, 'adiciona_imagens.html', dic)
+      else:
+        pass
 
   dic['form'] = form
 
