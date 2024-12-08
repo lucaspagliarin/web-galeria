@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <section id="adiciona">
+        <div class="row">
+            <a href="/"><span>Voltar</span></a>
+        </div>
+        <div>
+            Adicione novas fotos
+        </div>
+        <div id="form_adiciona">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                  <input name="imagens" type="file" accept="image/*" multiple>
+                </div>
+                <div class="row">
+                  {{ form_adiciona }}
+                </div>
+
+
+                <div class="row">
+                  <button type="submit">Adicionar</button>
+                </div>
+          </form>
+
+        </div>
+    </section>
+
+{% endblock %}
+
+
+
+
+
+<!--    <section style="width= 100%;">-->
+<!--        <div class="row">-->
+<!--            <a href="">Voltar</a>-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+<!--          <form action="" method="post" enctype="multipart/form-data">-->
+<!--            {% csrf_token %}-->
+<!--            <div class="row">-->
+<!--              <input name="imagens" type="file" accept="image/*" multiple>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              {{ form_adiciona }}-->
+<!--            </div>-->
+
+<!--            <div class="row">-->
+<!--              <button type="submit">Adicionar</button>-->
+<!--            </div>-->
+<!--          </form>-->
+<!--        </div>-->
+
+
+
+
+<!--&lt;!&ndash;        <dialog id="adiciona_imagens">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="modal-header">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="modal-body">&ndash;&gt;-->
+<!--&lt;!&ndash;              <form action="" method="post" enctype="multipart/form-data">&ndash;&gt;-->
+<!--&lt;!&ndash;                {% csrf_token %}&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <input name="imagens" type="file" accept="image/*" multiple>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  {{ form_adiciona }}&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <button type="submit">Adicionar</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </form>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </dialog>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <script>&ndash;&gt;-->
+<!--&lt;!&ndash;            window.onload(document.getElementById('adiciona_imagens).showModal());&ndash;&gt;-->
+<!--&lt;!&ndash;        </script>&ndash;&gt;-->
+<!--    </section>-->
