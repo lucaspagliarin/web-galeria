@@ -1,12 +1,15 @@
 from django import forms
-
+from galeria.funcoes import busca_colecoes
 
 class FormAdiciona(forms.Form):
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
         super().__init__(*args, **kwargs)
 
         self.fields['tags'] = forms.CharField(max_length=500, label='Tags', required=False)
-        self.fields['collection'] = forms.CharField(max_length=500, label='Collection', required=False)
+        self.fields['new_collection'] = forms.CharField(max_length=500, label='Collection', required=False)
+        # self.opcoes = colecoes(request)
+        self.fields['pick_collection'] = forms.ChoiceField(choices=busca_colecoes(self.user), initial='0', required=False)
         self.fields['favorite'] = forms.BooleanField(required=False, initial=False)
 
 

@@ -40,6 +40,10 @@
       </div>
     </div>
       <div class="grid">
+        {% for photo in photos %}
+          {{ photo.archive }}
+          <img src="/media/imagens/{{ photo }}" alt="">
+        {% endfor %}
         <img src="{% static "assets/photo.jpeg" %}" alt="" /> <img src="{% static
         "assets/photo.jpeg" %}" alt="" /> <img src="{% static "assets/photo.jpeg"
         %}" alt="" />

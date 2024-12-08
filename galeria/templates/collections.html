@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+    <style>
+        .colecoes {
+            width: 260px;
+            height: 90px;
+            border-radius: 15px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            align-content: center;
+            justify-items: center;
+            background-color: #000;
+        }
+
+        .colecoes:hover {
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+    </style>
+
+    <section id="secao_colecoes" style="text-align: center; justify-items: center;">
+        <h3 style="margin-bottom: 40px">Coleções</h3>
+        <div id="colecoes">
+            {% for col in colecoes %}
+                <div class="colecao" style="margin-bottom: 25px;" onclick="busca_colecao('{{ col }}');">
+                    <h3>{{ col }}</h3>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div id="modais">
+            {% include 'modais.html' %}
+        </div>
+
+
+        <script>
+            function busca_colecao(colecao) {
+                debugger;
+                $.ajax({
+                    url: '/colecoes/',
+                      method: 'GET',
+                      data: {
+                        colecao: colecao
+                      },
+                      success: function(response) {
+                        response = JSON.parse(response)
+                        debugger;
+                        document.getElementById('modais').innerHTML = response.modal;
+                        document.getElementById('modal-colecao').showModal();
+                        console.log('Dados enviados com sucesso:', response);
+                      },
+                      error: function(error) {
+                        debugger;
+                        console.error('Erro ao enviar dados:', error);
+                      }
+                    });
+            }
+
+        </script>
+
+
+
+    </section>
+
+
+{% endblock %}

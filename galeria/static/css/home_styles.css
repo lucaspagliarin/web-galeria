@@ -113,7 +113,7 @@ nav {
 }
 
 dialog {
-   width: 30%;
+   width: 90%;
    justify-self: center;
    align-self: center;
    border: none;
@@ -140,7 +140,7 @@ input::placeholder {
 }
 
 
-button#botao-login, button#botao-cadastro {
+button#botao-login, button#botao-cadastro, button#botao-adicionar {
    border: none;
    padding: 10px;
    width: 100px;
@@ -176,4 +176,52 @@ button#botao-login, button#botao-cadastro {
     border-radius: 10px;
     width: 80%;
     background-color: #5bfc86;
+}
+
+.esconde {
+    display: none;
+}
+
+#colecoes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.colecao {
+    width: 260px;
+    height: 90px;
+    border-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    align-content: center;
+    justify-items: center;
+}
+
+.colecao:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all 1s ease;
+}
+
+#adiciona{
+    justify-items: center;
+}
+
+.botoes-colecoes button {
+    border: none;
+    padding: 10px;
+    width: 150px;
+    border-radius: 30px;
+    background-color: #e7c197;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+}
+
+#id_pick_collection {
+    width: 300px;
+    height: 30px;
+    font-size: inherit;
+}
+
+#imagens_colecao img {
+   max-height: 40%;
 }

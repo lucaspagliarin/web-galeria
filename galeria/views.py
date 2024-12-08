@@ -3,7 +3,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.http import Http404
 from django.shortcuts import render, HttpResponse, redirect
 from galeria.forms import FormAdiciona, FormLogin, FormCadastro
-from galeria.funcoes import salva_imagens, cria_usuario
+from galeria.funcoes import salva_imagens, cria_usuario, busca_imagens, colecoes, favoritos
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
@@ -13,20 +13,20 @@ import json
 # Create your views here.
 
 def Home(request):
-  try:
-    user = User.objects.get()
-  except:
-    pass
 
-  return render(request, 'home.html')
+  photos = busca_imagens(request.user)
+
+  dic = {'photos': photos}
+
+  return render(request, 'home.html', dic)
 
 @login_required
 def Adiciona(request):
   dic = {}
-  form = FormAdiciona()
+  form = FormAdiciona(user=request.user)
 
   if request.method == 'POST':
-    form = FormAdiciona(request.POST)
+    form = FormAdiciona(request.POST, user=request.user)
     if form.is_valid():
       dados = {
         'tags': form.cleaned_data['tags'],
@@ -35,11 +35,12 @@ def Adiciona(request):
         'creation_date': datetime.now(),
         'author': request.user,
         'imagens': request.FILES.getlist('imagens')
+
       }
 
-      # resultado = salva_imagens(dados)
+      resultado = salva_imagens(dados)
 
-  dic['form_adiciona'] = form
+  dic['form'] = form
 
   return render(request, 'adiciona_imagens.html', dic)
 
@@ -97,3 +98,36 @@ def cadastro(request):
   dic['cadastrar'] = True
 
   return render(request, 'cadastro.html', dic)
+
+@login_required
+def collections(request):
+
+  if request.method == 'GET':
+    if 'colecao' in request.GET.keys():
+      dados = {
+        'colecao': request.GET['colecao'],
+        'user': request.user
+      }
+
+      dic = {
+        'colecao': dados['colecao'],
+        'imagens': busca_imagens(request.user, dados['colecao'])
+      }
+
+      modal = render(request, 'modais.html', dic).content
+
+      retorno = json.dumps({'modal': modal.decode("utf-8")}, default=DjangoJSONEncoder().default)
+
+      return HttpResponse(retorno)
+
+      # return render(request, 'modais.html', dic)
+
+  colecoes_user = colecoes(request.user)
+  favoritos_user = favoritos(request.user)
+
+  dic = {
+    'colecoes': colecoes_user,
+    'favoritos': favoritos_user
+  }
+
+  return render(request, 'collections.html', dic)
