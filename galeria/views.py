@@ -28,14 +28,15 @@ def Adiciona(request):
   if request.method == 'POST':
     form = FormAdiciona(request.POST, user=request.user)
     if form.is_valid():
+
+
       dados = {
         'tags': form.cleaned_data['tags'],
         'favorite': form.cleaned_data['favorite'],
-        'collection': form.cleaned_data['collection'],
+        'collection': form.cleaned_data['new_collection'] if form.cleaned_data['new_collection'].strip() else form.cleaned_data['pick_collection'],
         'creation_date': datetime.now(),
         'author': request.user,
         'imagens': request.FILES.getlist('imagens')
-
       }
 
       resultado = salva_imagens(dados)
