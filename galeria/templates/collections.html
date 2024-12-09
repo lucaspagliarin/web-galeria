@@ -57,6 +57,24 @@
                     });
             }
 
+            function busca_favoritos() {
+                $.ajax({
+                    url: '/colecoes/',
+                    method: 'GET',
+                      data: {
+                        favorito: true
+                      },
+                      success: function(response) {
+                        response = JSON.parse(response)
+                        document.getElementById('modais').innerHTML = response.modal;
+                        document.getElementById('modal-favoritos').showModal();
+                        console.log('Dados enviados com sucesso:', response);
+                      },
+                      error: function(error) {
+                        console.error('Erro ao enviar dados:', error);
+                      }
+                });
+            }
 
         </script>
 

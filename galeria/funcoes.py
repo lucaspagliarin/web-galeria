@@ -9,6 +9,9 @@ import hashlib
 from galeria.models import Tag, Photo, Collection
 
 def salva_imagens(dados):
+    if dados['collection'] == '0 - Nao selecionado':
+        return False, {'erro': True, 'mensagem': "Coleção é obrigatória."}
+
     try:
         # BUSCA A COLLECTION, SE NAO EXISTIR CRIA UMA NOVA
         try:
@@ -17,7 +20,7 @@ def salva_imagens(dados):
             try:
                 collection = Collection.objects.create(author=dados['author'], title=dados['collection'])
             except:
-                return {'erro': True, 'mensagem': "Houve um erro ao criar a Coleção"}
+                return False, {'erro': True, 'mensagem': "Houve um erro ao criar a Coleção"}
 
         # BUSCA A TAG, SE NAO EXISTIR CRIA UMA NOVA
         if dados['tags']:
@@ -27,7 +30,7 @@ def salva_imagens(dados):
                 try:
                     tag = Tag.objects.create(name=dados['tags'])
                 except:
-                    return {'erro': True, 'mensagem': "Houve um erro ao criar a Tag"}
+                    return False, {'erro': True, 'mensagem': "Houve um erro ao criar a Tag"}
 
         # SALVA AS IMAGENS
         imagens = dados['imagens']
@@ -59,10 +62,10 @@ def salva_imagens(dados):
                     photo.tags.add(tag)
             except Exception as err:
                 print(err)
-                pass
-        return True
-    except:
-        return False
+        return True, {'sucesso': True, 'mensagem': "Imagens salvas com sucesso!"}
+    except Exception as err:
+        print(err)
+        return False, {'erro': True, 'mensagem': str(err)}
 
 
 def cria_usuario(dados):
@@ -111,10 +114,10 @@ def busca_colecoes(user):
     opcoes = []
     colecoes = Collection.objects.filter(author=user)
 
-    opcoes.append(('0', 'Não selecionado'))
+    opcoes.append(('0 - Nao selecionado', 'Não selecionado'))
 
     for colecao in colecoes:
-        opcao = (str(colecao.id), str(colecao.title))
+        opcao = (str(colecao.title), str(colecao.title))
         opcoes.append(opcao)
 
     return opcoes

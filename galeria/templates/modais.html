@@ -8,7 +8,7 @@
 
 <dialog id="modal-colecao">
     <div class="modal-header">
-        <h2>{{ colecao }}</h2>
+        <h2 style="margin-bottom: 35px; padding: 2%">{{ colecao }}</h2>
     </div>
     <div class="modal-body">
         <div class="grid" id="imagens_colecao">
@@ -17,5 +17,22 @@
             {% endfor %}
         </div>
 
+    </div>
+</dialog>
+
+<dialog id="modal-favoritos">
+    <div class="modal-header">
+        <h2 style="margin-bottom: 35px; padding: 2%">Favoritos</h2>
+    </div>
+    <div class="modal-body">
+        {% if favoritos %}
+            <div class="grid" id="imagens_favoritos">
+                {% for imagem in favoritos %}
+                    <img src="/media/imagens/{{imagem}}" alt="">
+                {% endfor %}
+            </div>
+        {% else %}
+            <h4 style="padding: 5%;">Ainda não há imagens na coleção Favoritos</h4>
+        {% endif %}
     </div>
 </dialog>

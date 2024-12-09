@@ -29,7 +29,6 @@ def Adiciona(request):
     form = FormAdiciona(request.POST, user=request.user)
     if form.is_valid():
 
-
       dados = {
         'tags': form.cleaned_data['tags'],
         'favorite': form.cleaned_data['favorite'],
@@ -40,11 +39,14 @@ def Adiciona(request):
       }
 
       resultado = salva_imagens(dados)
-      if resultado:
-        dic['retorno'] = {'sucesso': True, 'mensagem': "Imagens cadastradas com sucesso!"}
+      if resultado[0]:
+        dic['retorno'] = {'sucesso': True, 'mensagem': "Imagens salvas com sucesso!"}
+        dic['esconde'] = True
         return render(request, 'adiciona_imagens.html', dic)
       else:
-        pass
+        dic['retorno'] = resultado[1]
+        dic['esconde'] = True
+        return render(request, 'adiciona_imagens.html', dic)
 
   dic['form'] = form
 
@@ -126,14 +128,22 @@ def collections(request):
 
       return HttpResponse(retorno)
 
-      # return render(request, 'modais.html', dic)
+    elif 'favorito' in request.GET.keys():
+      favorites = favoritos(request.user)
+      dic = {
+        'favoritos': favorites
+      }
+
+      modal = render(request, 'modais.html', dic).content
+
+      retorno = json.dumps({'modal': modal.decode("utf-8")}, default=DjangoJSONEncoder().default)
+
+      return HttpResponse(retorno)
 
   colecoes_user = colecoes(request.user)
-  favoritos_user = favoritos(request.user)
 
   dic = {
-    'colecoes': colecoes_user,
-    'favoritos': favoritos_user
+    'colecoes': colecoes_user
   }
 
   return render(request, 'collections.html', dic)
