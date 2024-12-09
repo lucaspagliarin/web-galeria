@@ -1,21 +1,12 @@
-<style>
-
-    #imagens_colecao img {
-       max-height: 40%;
-    }
-</style>
-
-
 <dialog id="modal-colecao">
-    <div class="modal-header">
-        <h2>{{ colecao }}</h2>
+  <div class="modal-header">
+    <h2>{{ colecao }}</h2>
+  </div>
+  <div class="modal-body">
+    <div class="grid" id="imagens_colecao">
+      {% for imagem in imagens %}
+      <img src="/media/imagens/{{imagem}}" alt="" />
+      {% endfor %}
     </div>
-    <div class="modal-body">
-        <div class="grid" id="imagens_colecao">
-            {% for imagem in imagens %}
-                <img src="/media/imagens/{{imagem}}" alt="">
-            {% endfor %}
-        </div>
-
-    </div>
+  </div>
 </dialog>

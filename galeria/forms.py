@@ -17,14 +17,14 @@ class FormLogin(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, *kwargs)
 
-        self.fields['username'] = forms.CharField(max_length=150, label='Username', required=True)
+        self.fields['username'] = forms.CharField(max_length=150, label='Usuário', required=True)
         self.fields['username'].widget.attrs.update({
-            'placeholder': 'Email or Username',
+            'placeholder': 'Email ou Usuário',
             'autocomplete': 'off',
         })
-        self.fields['password'] = forms.CharField(max_length=500, label='Password', required=True, widget=forms.PasswordInput)
+        self.fields['password'] = forms.CharField(max_length=500, label='Senha', required=True, widget=forms.PasswordInput)
         self.fields['password'].widget.attrs.update({
-            'placeholder': 'Password',
+            'placeholder': 'Senha',
             'autocomplete': 'off',
         })
 
@@ -35,22 +35,22 @@ class FormCadastro(forms.Form):
 
         self.fields['username'] = forms.CharField(max_length=150, label='Username', required=True)
         self.fields['username'].widget.attrs.update({
-            'placeholder': 'Username',
+            'placeholder': 'Usuário',
             'autocomplete': 'off',
         })
         self.fields['password'] = forms.CharField(max_length=500, label='Password', required=True, widget=forms.PasswordInput)
         self.fields['password'].widget.attrs.update({
-            'placeholder': 'Password',
+            'placeholder': 'Senha',
             'autocomplete': 'off',
         })
         self.fields['first_name'] = forms.CharField(label='First Name', required=True)
         self.fields['first_name'].widget.attrs.update({
-            'placeholder': 'First Name',
+            'placeholder': 'Nome',
             'autocomplete': 'off',
         })
         self.fields['last_name'] = forms.CharField(label='Last Name', required=True)
         self.fields['last_name'].widget.attrs.update({
-            'placeholder': 'Last Name',
+            'placeholder': 'Sobrenome',
             'autocomplete': 'off',
         })
         self.fields['email'] = forms.EmailField(required=True)
