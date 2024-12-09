@@ -9,7 +9,7 @@ class FormAdiciona(forms.Form):
         self.fields['tags'] = forms.CharField(max_length=500, label='Tags', required=False)
         self.fields['new_collection'] = forms.CharField(max_length=500, label='Collection', required=False)
         # self.opcoes = colecoes(request)
-        self.fields['pick_collection'] = forms.ChoiceField(choices=busca_colecoes(self.user), initial='0', required=False)
+        self.fields['pick_collection'] = forms.ChoiceField(choices=busca_colecoes(self.user), initial='0 - Nao selecionado', required=False)
         self.fields['favorite'] = forms.BooleanField(required=False, initial=False)
 
 

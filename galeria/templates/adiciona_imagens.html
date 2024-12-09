@@ -29,14 +29,27 @@
             <h3>Adicione novas fotos</h3>
         </div>
 
-        <div class="botoes-colecoes" style="margin-top: 30px;">
+        <div {% if esconde %} class="esconde" {% endif %}  id="botoes-colecoes" style="margin-top: 30px;">
             <button onclick="mostra_form('new');">Nova Coleção</button>
             <button onclick="mostra_form('pick');">Escolher Coleção</button>
         </div>
 
         <hr style="border: 0.5px solid #f1f1f1;
-                    width: 105%;
+                    width: 90%;
                     margin-top: 20px;">
+
+        {% if retorno.sucesso %}
+            <div style="padding: 2%; width: 60%; text-align: center; border-radius: 15px; background-color: #8effa1;
+                        margin-top: 30px;">
+                {{ retorno.mensagem }} Para adicionar mais imagens clique <a href="/adicionar/">aqui</a>.
+            </div>
+        {% endif %}
+        {% if retorno.erro %}
+            <div style="padding: 2%; width: 60%; text-align: center; border-radius: 15px; background-color: #ff3a3a;
+                        margin-top: 30px;">
+                {{ retorno.mensagem }} Tente novamente <a href=/adicionar/>aqui</a>.
+            </div>
+        {% endif %}
 
         <div id="form_adiciona" class="esconde">
             <form action="" method="post" enctype="multipart/form-data">
@@ -81,57 +94,3 @@
     </section>
 
 {% endblock %}
-
-
-
-
-
-<!--    <section style="width= 100%;">-->
-<!--        <div class="row">-->
-<!--            <a href="">Voltar</a>-->
-<!--        </div>-->
-<!--        <div class="modal-body">-->
-<!--          <form action="" method="post" enctype="multipart/form-data">-->
-<!--            {% csrf_token %}-->
-<!--            <div class="row">-->
-<!--              <input name="imagens" type="file" accept="image/*" multiple>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--              {{ form_adiciona }}-->
-<!--            </div>-->
-
-<!--            <div class="row">-->
-<!--              <button type="submit">Adicionar</button>-->
-<!--            </div>-->
-<!--          </form>-->
-<!--        </div>-->
-
-
-
-
-        <dialog id="adiciona_imagens">
-            <div class="modal-header">
-
-            </div>
-            <div class="modal-body">
-              <form action="" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="row">
-                  <input name="imagens" type="file" accept="image/*" multiple>
-                </div>
-                <div>
-                  {{ form_adiciona }}
-                </div>
-
-                <div class="row">
-                  <button type="submit">Adicionar</button>
-                </div>
-              </form>
-            </div>
-
-        </dialog>
-
-<!--&lt;!&ndash;        <script>&ndash;&gt;-->
-<!--&lt;!&ndash;            window.onload(document.getElementById('adiciona_imagens).showModal());&ndash;&gt;-->
-<!--&lt;!&ndash;        </script>&ndash;&gt;-->
-<!--    </section>-->

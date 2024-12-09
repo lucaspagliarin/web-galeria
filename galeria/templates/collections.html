@@ -5,6 +5,13 @@
 <section id="secao_colecoes" style="text-align: center; justify-items: center">
   <h3 style="margin-bottom: 40px">Coleções</h3>
   <div id="colecoes">
+    <div
+      class="colecao"
+      style="margin-bottom: 24px; margin-right: 24px"
+      onclick="busca_favoritos();"
+    >
+      <h3>Favoritos</h3>
+    </div>
     {% for col in colecoes %}
     <div
       class="colecao"
@@ -36,6 +43,25 @@
           console.error("Erro ao enviar dados:", error);
         },
       });
+    }
+
+    function busca_favoritos() {
+        $.ajax({
+            url: '/colecoes/',
+            method: 'GET',
+              data: {
+                favorito: true
+              },
+              success: function(response) {
+                response = JSON.parse(response)
+                document.getElementById('modais').innerHTML = response.modal;
+                // document.getElementById('modal-favoritos').showModal();
+                console.log('Dados enviados com sucesso:', response);
+              },
+              error: function(error) {
+                console.error('Erro ao enviar dados:', error);
+              }
+        });
     }
   </script>
 </section>

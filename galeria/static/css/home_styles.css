@@ -244,7 +244,7 @@ button#botao-adicionar {
   justify-items: center;
 }
 
-.botoes-colecoes button {
+#botoes-colecoes button {
   border: none;
   padding: 10px;
   width: 150px;

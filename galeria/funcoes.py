@@ -9,6 +9,9 @@ import hashlib
 from galeria.models import Tag, Photo, Collection
 
 def salva_imagens(dados):
+    if dados['collection'] == '0 - Nao selecionado':
+        return False, {'erro': True, 'mensagem': "Coleção é obrigatória."}
+
     try:
         # BUSCA A COLLECTION, SE NAO EXISTIR CRIA UMA NOVA
         try:
@@ -17,7 +20,7 @@ def salva_imagens(dados):
             try:
                 collection = Collection.objects.create(author=dados['author'], title=dados['collection'])
             except:
-                return {'erro': True, 'mensagem': "Houve um erro ao criar a Coleção"}
+                return False, {'erro': True, 'mensagem': "Houve um erro ao criar a Coleção"}
 
         # BUSCA A TAG, SE NAO EXISTIR CRIA UMA NOVA
         if dados['tags']:
@@ -27,13 +30,13 @@ def salva_imagens(dados):
                 try:
                     tag = Tag.objects.create(name=dados['tags'])
                 except:
-                    return {'erro': True, 'mensagem': "Houve um erro ao criar a Tag"}
+                    return False, {'erro': True, 'mensagem': "Houve um erro ao criar a Tag"}
 
         # SALVA AS IMAGENS
         imagens = dados['imagens']
         project_path = settings.BASE_DIR
-        project_path = project_path.as_posix()
-        path = '/galeria/arquivos/imagens/'
+        project_path = project_path.parent.as_posix()
+        path = '/webgaleria/galeria/arquivos/imagens/'
         for imagem in imagens:
             extensao = '.jpg' if imagem.name.lower().endswith(('.jpg', '.jpeg')) else '.png'
             data_hora = datetime.now()
@@ -59,11 +62,12 @@ def salva_imagens(dados):
                     photo.tags.add(tag)
             except Exception as err:
                 print(err)
-                pass
-        return True
+                return False, {'erro': True, 'mensagem': "Erro ao salvar imagens"}
+
+        return True, {'sucesso': True, 'mensagem': "Imagens salvas com sucesso!"}
     except Exception as err:
         print(err)
-        return False, {'erro': 'True', 'mensagem': 'ocorreu um erro: ' + str(err)}
+        return False, {'erro': True, 'mensagem': str(err)}
 
 
 def cria_usuario(dados):
@@ -112,7 +116,7 @@ def busca_colecoes(user):
     opcoes = []
     colecoes = Collection.objects.filter(author=user)
 
-    opcoes.append(('0', 'Não selecionado'))
+    opcoes.append(('0 - Nao selecionado', 'Não selecionado'))
 
     for colecao in colecoes:
         opcao = (str(colecao.title), str(colecao.title))
