@@ -32,8 +32,8 @@ def salva_imagens(dados):
         # SALVA AS IMAGENS
         imagens = dados['imagens']
         project_path = settings.BASE_DIR
-        project_path = project_path.parent.as_posix()
-        path = '/webgaleria/galeria/arquivos/imagens/'
+        project_path = project_path.as_posix()
+        path = '/galeria/arquivos/imagens/'
         for imagem in imagens:
             extensao = '.jpg' if imagem.name.lower().endswith(('.jpg', '.jpeg')) else '.png'
             data_hora = datetime.now()
@@ -61,8 +61,9 @@ def salva_imagens(dados):
                 print(err)
                 pass
         return True
-    except:
-        return False
+    except Exception as err:
+        print(err)
+        return False, {'erro': 'True', 'mensagem': 'ocorreu um erro: ' + str(err)}
 
 
 def cria_usuario(dados):
@@ -114,7 +115,7 @@ def busca_colecoes(user):
     opcoes.append(('0', 'Não selecionado'))
 
     for colecao in colecoes:
-        opcao = (str(colecao.id), str(colecao.title))
+        opcao = (str(colecao.title), str(colecao.title))
         opcoes.append(opcao)
 
     return opcoes
