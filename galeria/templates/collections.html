@@ -1,68 +1,43 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block conteudo %}
 
-{% block conteudo %}
+<style></style>
 
-    <style>
-        .colecoes {
-            width: 260px;
-            height: 90px;
-            border-radius: 15px;
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-            align-content: center;
-            justify-items: center;
-            background-color: #000;
-        }
+<section id="secao_colecoes" style="text-align: center; justify-items: center">
+  <h3 style="margin-bottom: 40px">Coleções</h3>
+  <div id="colecoes">
+    {% for col in colecoes %}
+    <div
+      class="colecao"
+      style="margin-bottom: 24px; margin-right: 24px"
+      onclick="busca_colecao('{{ col }}');"
+    >
+      <h3>{{ col }}</h3>
+    </div>
+    {% endfor %}
+  </div>
 
-        .colecoes:hover {
-            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-        }
+  <div id="modais">{% include 'modais.html' %}</div>
 
-    </style>
-
-    <section id="secao_colecoes" style="text-align: center; justify-items: center;">
-        <h3 style="margin-bottom: 40px">Coleções</h3>
-        <div id="colecoes">
-            <div class="colecao" style="margin-bottom: 25px; margin-right: 25px" onclick="busca_favoritos();">
-                <h3>Favoritos</h3>
-            </div>
-            {% for col in colecoes %}
-                <div class="colecao" style="margin-bottom: 25px; margin-right: 25px" onclick="busca_colecao('{{ col }}');">
-                    <h3>{{ col }}</h3>
-                </div>
-            {% endfor %}
-        </div>
-
-        <div id="modais">
-            {% include 'modais.html' %}
-        </div>
-
-
-        <script>
-            function busca_colecao(colecao) {
-                $.ajax({
-                    url: '/colecoes/',
-                      method: 'GET',
-                      data: {
-                        colecao: colecao
-                      },
-                      success: function(response) {
-                        response = JSON.parse(response)
-                        document.getElementById('modais').innerHTML = response.modal;
-                        document.getElementById('modal-colecao').showModal();
-                        console.log('Dados enviados com sucesso:', response);
-                      },
-                      error: function(error) {
-                        console.error('Erro ao enviar dados:', error);
-                      }
-                    });
-            }
-
-
-        </script>
-
-
-
-    </section>
-
+  <script>
+    function busca_colecao(colecao) {
+      $.ajax({
+        url: "/colecoes/",
+        method: "GET",
+        data: {
+          colecao: colecao,
+        },
+        success: function (response) {
+          response = JSON.parse(response);
+          document.getElementById("modais").innerHTML = response.modal;
+          // document.getElementById("modal-colecao").showModal();
+          console.log("Dados enviados com sucesso:", response);
+        },
+        error: function (error) {
+          console.error("Erro ao enviar dados:", error);
+        },
+      });
+    }
+  </script>
+</section>
 
 {% endblock %}
