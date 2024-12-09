@@ -12,6 +12,7 @@ import json
 
 # Create your views here.
 
+@login_required
 def Home(request):
 
   photos = busca_imagens(request.user)
