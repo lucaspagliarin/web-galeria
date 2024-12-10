@@ -119,13 +119,11 @@ dialog {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  width: 90%;
-  height: 80%;
+  width: 100%;
   justify-self: center;
   align-self: center;
   border: none;
   border-radius: 16px;
-  padding: 24px;
 }
 
 label {
