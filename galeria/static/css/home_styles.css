@@ -110,7 +110,7 @@ nav {
 
   img {
     width: 33.33333%;
-    max-height: 50vh;
+    height: 350px;
     object-fit: cover;
   }
 }
