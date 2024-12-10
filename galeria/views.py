@@ -131,7 +131,8 @@ def collections(request):
     elif 'favorito' in request.GET.keys():
       favorites = favoritos(request.user)
       dic = {
-        'favoritos': favorites
+        'colecao': "Favoritos",
+        'imagens': favorites
       }
 
       modal = render(request, 'modais.html', dic).content

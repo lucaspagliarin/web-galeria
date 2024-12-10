@@ -35,8 +35,8 @@ def salva_imagens(dados):
         # SALVA AS IMAGENS
         imagens = dados['imagens']
         project_path = settings.BASE_DIR
-        project_path = project_path.parent.as_posix()
-        path = '/webgaleria/galeria/arquivos/imagens/'
+        project_path = project_path.as_posix()
+        path = '/galeria/arquivos/imagens/'
         for imagem in imagens:
             extensao = '.jpg' if imagem.name.lower().endswith(('.jpg', '.jpeg')) else '.png'
             data_hora = datetime.now()
