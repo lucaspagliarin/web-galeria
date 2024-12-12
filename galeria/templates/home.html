@@ -41,24 +41,25 @@
 
 
   function salva_favorito(imagem, favorito) {
-    favorito = favorito.toLowerCase() === "true";
-    console.log(typeof(favorito)) 
     $.ajax({
       url: "/",
       type: "GET",
       data: {favoritar: favorito, imagem: imagem},
       success: function (retorno) {
         retorno = JSON.parse(retorno);
-        if (retorno.sucesso) {
+        {% comment %} if (retorno.sucesso) {
           alert('Imagem adicionada nos Favoritos com sucesso!');
         } else {
           alert('Houve um erro ao adicionar aos Favoritos!');
-        }
+        } {% endcomment %}
       },
       error: function (retorno) {
         console.log('erro');
       }
     });
+
+    
+    fecha_modal()
   }
 
 </script>

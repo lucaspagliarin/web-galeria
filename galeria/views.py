@@ -30,6 +30,9 @@ def Home(request):
       'imagem': request.GET.get('imagem'),
       'user': request.user
     }
+
+    
+
     favoritou = favorita_imagem(dados['favoritar'], dados['imagem'], dados['user'])
 
     retorno = json.dumps({'sucesso': favoritou}, default=DjangoJSONEncoder().default)

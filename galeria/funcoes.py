@@ -165,11 +165,10 @@ def busca_info_imagem(photo, user):
 
 def favorita_imagem(favorito, imagem, user):
     try:
-        favoritar = eval(favorito.replace('f', 'F').replace('t', 'T'))
 
         photo = Photo.objects.get(archive=imagem, author=user)
 
-        photo.isFavorite = favoritar
+        photo.isFavorite = not photo.isFavorite
         photo.save()
         return True
     except:
