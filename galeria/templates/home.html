@@ -40,19 +40,17 @@
   }
 
 
-  function salva_favorito(imagem) {
-    var check = document.getElementById('favoritar-img').checked;
-
+  function salva_favorito(imagem, favorito) {
     $.ajax({
       url: "/",
       type: "GET",
-      data: {favoritar: check, imagem: imagem},
+      data: {favoritar: favorito, imagem: imagem},
       success: function (retorno) {
         retorno = JSON.parse(retorno);
         if (retorno.sucesso) {
           alert('Imagem adicionada nos Favoritos com sucesso!');
         } else {
-          alery('Houve um erro ao adicionar aos Favoritos!');
+          alert('Houve um erro ao adicionar aos Favoritos!');
         }
       },
       error: function (retorno) {

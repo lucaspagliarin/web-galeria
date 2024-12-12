@@ -1,6 +1,23 @@
 <dialog id="modal-img" class="esconde">
-  <p id="favoritar">Favoritos: <input type="checkbox" name="favorite" id="favoritar-img" onclick="salva_favorito('{{arquivo}}');" {% if favorito %}checked{% endif %}></p>
 
+  <div onclick="salva_favorito('{{ arquivo }}', {{ favorito }});" style="position: absolute; top: 24px; left: 24px; mix-blend-mode: difference;">
+    {% if favorito %}
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <g clip-path="url(#clip0_7671_8154)">
+      <path d="M10.8575 2.55485C11.2144 1.4444 12.7856 1.4444 13.1425 2.55486L15.0689 8.54915H21.3393C22.4986 8.54915 22.984 10.03 22.0497 10.7163L16.9656 14.4509L18.9006 20.4718C19.2566 21.5797 17.9856 22.495 17.0477 21.8061L12 18.0983L6.95229 21.8061C6.01442 22.495 4.74339 21.5797 5.09944 20.4718L7.03444 14.4509L1.95028 10.7163C1.01597 10.03 1.5014 8.54915 2.66068 8.54915H8.93112L10.8575 2.55485Z" fill="#ffffff"/>
+      </g>
+      <defs>
+      <clipPath id="clip0_7671_8154">
+      <rect width="24" height="24" fill="white"/>
+      </clipPath>
+      </defs>
+      </svg>
+    {% else %}
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.6109 10.5491L12 5.5366L10.3891 10.5491H5.10113L9.37919 13.6915L7.75944 18.7315L12 15.6166L16.2406 18.7315L14.6208 13.6915L18.8989 10.5491H13.6109ZM8.93112 8.54906H2.66068C1.5014 8.54906 1.01597 10.0299 1.95028 10.7162L7.03444 14.4508L5.09944 20.4717C4.74339 21.5796 6.01442 22.4949 6.95229 21.806L12 18.0982L17.0477 21.806C17.9856 22.4949 19.2566 21.5796 18.9006 20.4717L16.9656 14.4508L22.0497 10.7162C22.984 10.0299 22.4986 8.54906 21.3393 8.54906H15.0689L13.1425 2.55477C12.7856 1.44431 11.2144 1.44431 10.8575 2.55476L8.93112 8.54906Z" fill="#1B1B1B"/>
+      </svg>
+    {% endif %}
+  </div>
   
   <div onclick="fecha_modal()" style="position: absolute; top: 24px; right: 24px; mix-blend-mode: difference;">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
