@@ -153,6 +153,8 @@ def busca_info_imagem(photo, user):
 
     img = Photo.objects.get(archive=photo, author=user)
 
+    print(img.isFavorite)
+
     data = {
         'arquivo': img.archive,
         'collection': img.collection,

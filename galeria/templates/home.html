@@ -41,6 +41,8 @@
 
 
   function salva_favorito(imagem, favorito) {
+
+    console.log(typeof(favorito)) 
     $.ajax({
       url: "/",
       type: "GET",
