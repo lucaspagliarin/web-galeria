@@ -263,3 +263,6 @@ button#botao-adicionar {
   font-size: inherit;
 }
   
+#imagem-modal {
+    width: 800px;
+}

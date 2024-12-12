@@ -1,0 +1,14 @@
+<dialog id="modal-img" class="esconde">
+  <div onclick="fecha_modal()">
+    fechar
+  </div>
+  <div>
+    <img id="{{ arquivo }}" class="imagem-modal" src="/media/imagens/{{ arquivo }}" alt="" style="width: 800px;">
+  </div>
+  <div id="especificacoes">
+    <p id="colecao">coleção: {{ collection }}</p>
+    <p id="data-criacao">Data de adição(?): {{ data }}</p>
+    <p id="favoritar">Favoritos: <input type="checkbox" name="favorite" id="favoritar-img" onclick="salva_favorito('{{arquivo}}');" {% if favorito %}checked{% endif %}></p>
+  </div>
+
+</dialog>

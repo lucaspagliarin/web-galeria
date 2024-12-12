@@ -148,3 +148,27 @@ def favoritos(user):
         dic.append(fav.archive)
 
     return dic
+
+def busca_info_imagem(photo, user):
+
+    img = Photo.objects.get(archive=photo, author=user)
+
+    data = {
+        'arquivo': img.archive,
+        'collection': img.collection,
+        'data': img.created_date,
+        'favorito': img.isFavorite
+    }
+    return data
+
+def favorita_imagem(favorito, imagem, user):
+    try:
+        favoritar = eval(favorito.replace('f', 'F').replace('t', 'T'))
+
+        photo = Photo.objects.get(archive=imagem, author=user)
+
+        photo.isFavorite = favoritar
+        photo.save()
+        return True
+    except:
+        return False

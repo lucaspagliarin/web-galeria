@@ -2,8 +2,68 @@
 
 <div class="grid">
   {% for photo in photos %} {{ photo.archive }}
-  <img src="/media/imagens/{{ photo }}" alt="" />
+  <img src="/media/imagens/{{ photo }}" alt="" onclick="mostra_imagem('{{ photo }}')" />
   {% endfor %}
 </div>
+
+<div id="modal-imagens">
+  {% include 'modal-imagem.html' %}
+</div>
+
+
+<script>
+  function mostra_imagem(photo) {
+    $.ajax({
+      url: "/",
+      type: "GET",
+      data: {img: photo},
+      success: function (retorno) {
+        debugger;
+        retorno = JSON.parse(retorno);
+        document.getElementById('modal-imagens').innerHTML = retorno.modal;
+        // console.log('sucesso');
+        document.getElementById('modal-img').showModal();
+        document.getElementById('modal-img').classList.remove('esconde');
+      },
+      error: function (retorno) {
+        debugger;
+        console.log('erro');
+        alert('erro ao abrir modal');
+      }
+
+    });
+
+    // document.getElementById('imagem-modal').src = '/media/imagens/' + photo;
+  }
+
+  function fecha_modal() {
+    document.getElementById('modal-img').classList.add('esconde');
+    document.getElementById('modal-img').close();
+  }
+
+
+  function salva_favorito(imagem) {
+    debugger;
+    var check = document.getElementById('favoritar-img').checked;
+
+    $.ajax({
+      url: "/",
+      type: "GET",
+      data: {favoritar: check, imagem: imagem},
+      success: function (retorno) {
+        retorno = JSON.parse(retorno);
+        if (retorno.sucesso) {
+          alert('Imagem adicionada nos Favoritos com sucesso!');
+        } else {
+          alery('Houve um erro ao adicionar aos Favoritos!');
+        }
+      },
+      error: function (retorno) {
+        console.log('erro');
+      }
+    });
+  }
+
+</script>
 
 {% endblock %}
