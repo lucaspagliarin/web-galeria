@@ -118,8 +118,6 @@ nav {
 dialog {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  width: 100%;
   justify-self: center;
   align-self: center;
   border: none;
@@ -263,6 +261,15 @@ button#botao-adicionar {
   font-size: inherit;
 }
   
-#imagem-modal {
-    width: 800px;
+#modal-img {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.imagem-modal {
+  height: 80vh;
+  width: 100%;
 }
