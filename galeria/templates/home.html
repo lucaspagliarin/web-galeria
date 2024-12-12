@@ -20,7 +20,7 @@
         retorno = JSON.parse(retorno);
         document.getElementById('modal-imagens').innerHTML = retorno.modal;
         document.getElementById('modal-imagens').classList.remove('esconde');
-        // console.log('sucesso');
+        
         document.getElementById('modal-img').showModal();
         document.getElementById('modal-img').classList.remove('esconde');
       },
@@ -30,8 +30,6 @@
       }
 
     });
-
-    // document.getElementById('imagem-modal').src = '/media/imagens/' + photo;
   }
 
   function fecha_modal() {

@@ -24,7 +24,9 @@
   </div>
 
   <div id="modais"></div>
-
+  <div id="modal-imagens">
+  </div>
+</section>
   <script>
     function busca_colecao(colecao) {
       $.ajax({
@@ -63,7 +65,57 @@
           }
       });
     }
+
+    function mostra_imagem(photo) {
+      $.ajax({
+        url: "/",
+        type: "GET",
+        data: {img: photo},
+        success: function (retorno) {
+          retorno = JSON.parse(retorno);
+          document.getElementById('modal-imagens').innerHTML = retorno.modal;
+          document.getElementById('modal-imagens').classList.remove('esconde');
+          
+          document.getElementById('modal-img').showModal();
+          document.getElementById('modal-img').classList.remove('esconde');
+        },
+        error: function (retorno) {
+          console.log('erro');
+          alert('erro ao abrir modal');
+        }
+  
+      });
+    }
+
+    function fecha_modal() {
+      document.getElementById('modal-imagens').classList.add('esconde');
+      document.getElementById('modal-img').close();
+    }
+    
+    function salva_favorito(imagem, favorito) {
+      $.when($.ajax({
+        url: "/",
+        type: "GET",
+        data: {favoritar: favorito, imagem: imagem},
+        success: function (retorno) {
+          retorno = JSON.parse(retorno);
+          {% comment %} if (retorno.sucesso) {
+            alert('Imagem adicionada nos Favoritos com sucesso!');
+          } else {
+            alert('Houve um erro ao adicionar aos Favoritos!');
+          } {% endcomment %}
+        },
+        error: function (retorno) {
+          console.log('erro');
+        }
+      })).then(function() {
+        mostra_imagem(imagem) 
+      })
+  
+  
+      
+    }
   </script>
-</section>
+
 
 {% endblock %}

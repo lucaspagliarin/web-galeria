@@ -262,11 +262,11 @@ button#botao-adicionar {
 }
   
 #modal-img {
-
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  gap: 24px;
 }
 
 .imagem-modal {
