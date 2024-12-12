@@ -41,7 +41,7 @@
 
 
   function salva_favorito(imagem, favorito) {
-    $.ajax({
+    $.when($.ajax({
       url: "/",
       type: "GET",
       data: {favoritar: favorito, imagem: imagem},
@@ -56,10 +56,12 @@
       error: function (retorno) {
         console.log('erro');
       }
-    });
+    })).then(function() {
+      mostra_imagem(imagem) 
+    })
+
 
     
-    fecha_modal()
   }
 
 </script>
