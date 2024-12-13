@@ -46,7 +46,7 @@ Estaremos utilizando o <b>Git Bash</b> como terminal nesse projeto.
 
 Pronto! O Projeto estará rodando na sua máquina simulando um servidor local.
 
-Por padrão os projetos em Django rodam no endereço <code>http://127.0.0.1:8000/</code>, mas indicamos verificar o endereço utilizado no terminal.
+Por padrão os projetos em Django rodam no endereço <code>http://127.0.0.1:8000/</code>, mas indicamos verificar o endereço indicado no terminal.
 
 # Funcionalidades
 
