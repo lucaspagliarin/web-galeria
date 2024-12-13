@@ -39,12 +39,9 @@ Estaremos utilizando o <b>Git Bash</b> como terminal nesse projeto.
 <br/>
 
 5) Finalmente, para rodar o projeto utilizaremos o comando:
-    
     <code>
     python manage.py runserver
     </code>
-
-<br/>
 
 
 Pronto! O Projeto estará rodando na sua máquina simulando um servidor local.
