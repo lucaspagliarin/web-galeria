@@ -297,7 +297,7 @@ button#botao-adicionar {
   align-items: start;
   justify-content: flex-start;
 
-  padding: 24px;
+  padding: 16px 24px;
   width: auto;
 
 }

@@ -58,8 +58,8 @@ O usuário poderá realizar o seu cadastro, informando seu Usuário, e-mail e se
 
 Deixamos um usuário padrão cadastrado com alguns dados. Seguem informações de login
     
-    usuário: lucaspagliarin
-    senha: 123
+    usuário: admin 
+    senha: admin
 
     
 <br/>
