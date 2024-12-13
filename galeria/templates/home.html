@@ -6,7 +6,7 @@
   {% endfor %}
 </div>
 
-<div id="modal-imagens">
+<div id="modal-imagens" class="esconde">
 </div>
 
 
@@ -34,6 +34,7 @@
 
   function fecha_modal() {
     document.getElementById('modal-imagens').classList.add('esconde');
+    document.getElementById('modal-img').classList.add('esconde');
     document.getElementById('modal-img').close();
   }
 
