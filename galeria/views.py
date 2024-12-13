@@ -3,7 +3,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.http import Http404
 from django.shortcuts import render, HttpResponse, redirect
 from galeria.forms import FormAdiciona, FormLogin, FormCadastro
-from galeria.funcoes import salva_imagens, cria_usuario, busca_imagens, colecoes, favoritos
+from galeria.funcoes import salva_imagens, cria_usuario, busca_imagens, colecoes, favoritos, busca_info_imagem, favorita_imagem
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
@@ -14,6 +14,31 @@ import json
 
 @login_required
 def Home(request):
+
+  if request.GET.get('img'):
+    img = request.GET['img']
+    dados = busca_info_imagem(img, request.user)
+    dados['modal_imagem'] = True
+    modal = render(request, 'modal-imagem.html', dados).content
+    modal = modal.decode('utf-8')
+    retorno = json.dumps({'modal': modal}, default=DjangoJSONEncoder().default)
+
+    return HttpResponse(retorno)
+  elif request.GET.get('favoritar'):
+    dados = {
+      'favoritar': request.GET.get('favoritar'),
+      'imagem': request.GET.get('imagem'),
+      'user': request.user
+    }
+
+    
+
+    favoritou = favorita_imagem(dados['favoritar'], dados['imagem'], dados['user'])
+
+    retorno = json.dumps({'sucesso': favoritou}, default=DjangoJSONEncoder().default)
+
+    return HttpResponse(retorno)
+
 
   photos = busca_imagens(request.user)
 
@@ -140,7 +165,6 @@ def collections(request):
       retorno = json.dumps({'modal': modal.decode("utf-8")}, default=DjangoJSONEncoder().default)
 
       return HttpResponse(retorno)
-
   colecoes_user = colecoes(request.user)
 
   dic = {

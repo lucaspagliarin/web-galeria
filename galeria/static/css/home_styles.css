@@ -1,10 +1,12 @@
 * {
   margin: 0;
   padding: 0;
+  color: #1b1b1b;
 }
 
 body {
   font-family: "Inter", sans-serif;
+  font-smooth: anti-aliased;
 }
 
 nav {
@@ -118,8 +120,6 @@ nav {
 dialog {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  width: 100%;
   justify-self: center;
   align-self: center;
   border: none;
@@ -263,3 +263,62 @@ button#botao-adicionar {
   font-size: inherit;
 }
   
+#modal-img {
+  display: flex;
+  align-items: start;
+  justify-content: flex-start;
+  position: fixed;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+}
+
+#modal-imagens{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  content: '';
+}
+
+.imagem-modal {
+  padding: 0;
+}
+
+.imagem-modal img {
+  height: 80vh;
+  width: 100%;
+}
+
+#especificacoes {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+
+  padding: 24px;
+  width: auto;
+
+}
+
+#especificacoes span {
+  color: #2c2c2c;
+  font-size: 14px;
+}
+
+#especificacoes h4 {
+  margin-bottom: 16px;
+}
+
+#modal-colecao {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  margin-top: 24px;
+}
+
+#modais { 
+  width: 100%;
+}

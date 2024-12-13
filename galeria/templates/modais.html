@@ -1,15 +1,15 @@
-<dialog id="modal-colecao">
-  <div class="modal-header">
+<div id="modal-colecao">
+  
     <h2>{{ colecao }}</h2>
-  </div>
-  <div class="modal-body">
+  
+  
     <div class="grid" id="imagens_colecao">
       {% for imagem in imagens %}
-      <img src="/media/imagens/{{imagem}}" alt="" />
+      <img src="/media/imagens/{{imagem}}" alt="" onclick="mostra_imagem('{{ imagem }}')" />
       {% endfor %}
     </div>
-  </div>
-</dialog>
+  
+</div>
 
 {% comment %} <dialog id="modal-favoritos">
     <div class="modal-header">
